@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    `maven-publish`
 }
 
 android {
@@ -21,18 +22,33 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
+
+
+/*    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components . release
+                            groupId = 'com.zj.banner'
+                    artifactId = 'banner'
+                    version = '1.0.0'
+                }
+            }
+        }
+    }*/
 }
 
 dependencies {
 
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.core:core-ktx:1.9.0")
@@ -42,5 +58,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.0")
+
+
     implementation(files("libs\\pinyin4j-2.5.0.jar"))
 }
